@@ -7,84 +7,149 @@
   </head>
   <body>
     <%- include('../common/header', {a:false,b:false,c:true }) %>
-    <form action="/party/register-submit" method="POST">
-      <table>
-        <tr>
-          <td>
-            <h3>Add Party</h3>
-          </td>
-        </tr>
-        <input type="text" name="id" readonly hidden value="<%=party.id%>" />
-        <tr>
-          <td>Enter Party Name</td>
-          <td>
-            <input type="text" name="name" value="<%=party.name%>" required />
-          </td>
-        </tr>
-        <tr>
-          <td>Enter Main Candidate Name</td>
-          <td>
-            <input
-              type="text"
-              name="main_candidate"
-              value="<%=party.main_candidate%>"
-              required
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Enter Party Short Name</td>
-          <td>
-            <input
-              type="text"
-              name="short_name"
-              value="<%=party.short_name%>"
-              required
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="submit" value="Edit" />
-          </td>
-          <td>
-            <input type="reset" />
-          </td>
-        </tr>
-        <tr>
-          <td><h1 style="color: green"><%=message%></h1></td>
-        </tr>
-        <tr>
-          <td><h1 style="color: red"><%=error%></h1></td>
-        </tr>
-      </table>
-    </form>
-    <form action="/party/logo-edit" method="post" enctype="multipart/form-data">
-      <table>
-        <input type="text" name="id" readonly hidden value="<%=party.id%>" />
-        <tr>
-          <td>upload logo here</td>
-          <td>
-            <input required type="file" name="logo" />
-          </td>
-          <td>
-            <img
-              src="/images/<%=party.logo%>"
-              height="100"
-              width="100"
-              alt="failed to load image"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="submit" value="Edit" />
-          </td>
-          <td>
-            <input type="reset" />
-          </td>
-        </tr>
-      </table>
-    </form>
+    <div
+      class="mx-auto containe align-items-center row mx-md-5"
+      style="height: 500px"
+    >
+      <div class="col-sm-6">
+        <div class="card border-0">
+          <div class="card-body ">
+            <form action="/party/register-submit" method="POST">
+              <table>
+                <tr>
+                    <h3>Update Party</h3>
+                    <hr>
+                </tr>
+                <input
+                  type="text"
+                  name="id"
+                  readonly
+                  hidden
+                  value="<%=party.id%>"
+                />
+                <tr>
+                  <!-- <td>Enter Party Name</td> -->
+                  <td class="form-group">
+                    <label for= "exampleFormControlInput1">Enter Party Name</label
+                    >
+                  </td>
+
+                  <td>
+                    <input
+                      class="form-control"
+                      id="exampleFormControlInput1"
+                      type="text"
+                      name="name"
+                      value="<%=party.name%>"
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="form-group">
+                    <label for= "exampleFormControlInput1">Main Candidate</label>
+                  </td>
+                    <input
+                      type="text"
+                      name="main_candidate"
+                      value="<%=party.main_candidate%>"
+                      required
+                      class="form-control"
+                      id="exampleFormControlInput1"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="from-group">
+                    <label for= "exampleFormControlInput1"> Enter Party Short Name</td>
+                  <td class="ml-3">
+                    <input
+                      type="text"
+                      name="short_name"
+                      value="<%=party.short_name%>"
+                      required
+                      class="form-control"
+                      id="exampleFormControlInput1"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <hr>
+                    <!-- <input type="submit" value="Edit" /> -->
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                  </td>
+                  <td>
+                    <hr>
+                    <!-- <input type="reset" /> -->
+                    <button type="reset" class="btn btn-warning">Reset</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h1 style="color: green"><%=message%></h1>
+                  </td>
+                </tr>
+                <tr>
+                  <td><h1 style="color: red"><%=error%></h1></td>
+                </tr>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card border-0 shadow p-2 mb-3 bg-white rounded">
+          <div class="card-body ">
+            <form
+              action="/party/logo-edit"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              <table>
+                <input
+                  type="text"
+                  name="id"
+                  readonly
+                  hidden
+                  value="<%=party.id%>"
+                />
+                <tr>
+                  <h3>Upload logo here</h3>
+                  <hr />
+                </tr>
+                <tr>
+                  <td>
+                    <!-- <input required type="file" name="logo" /> -->
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="logo">
+                      <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                  </td>
+                  <td class="shadow-lg p-3 mb-5 bg-white rounded border border-success">
+                    <img
+                      src="/images/<%=party.logo%>"
+                      height="100"
+                      width="100"
+                      alt="failed to load image"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <hr>
+                    <!-- <input type="submit" value="Edit" /> -->
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                  
+                    <!-- <input type="reset" /> -->
+                    <button type="reset" class="btn btn-warning">Reset</button>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
